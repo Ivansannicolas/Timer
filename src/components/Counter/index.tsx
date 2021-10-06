@@ -7,7 +7,11 @@ interface Props {
 
 const Counter: React.FC<Props> = ({ count }) => {
   function getSeconds(seconds: number) {
-    const totalTime: string = new Date(seconds * 1000).toISOString().substr(11, 8);
+    const divider = ":";
+    const position = 2;
+    const time: string = new Date(seconds * 100).toISOString().slice(15, 23).split('.').join('')
+      .split(':').join('');
+    const totalTime = [time.slice(0, position), divider, time.slice(position, position * 2), divider, time.slice(position*2, position * 3)].join('');
     return totalTime;
   }
 
